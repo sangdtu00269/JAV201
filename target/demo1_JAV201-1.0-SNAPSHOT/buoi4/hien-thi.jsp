@@ -12,6 +12,12 @@
     <title>Title</title>
 </head>
 <body>
+Tim kiem giang vien
+<form action="/giang-vien/tim-kiem">
+    Ten can tim: <input type="text" name="tenGiangVien"> <br>
+    <button>Find</button>
+</form>
+Them giang vien:
 <form action="/giang-vien/them" method="post">
     Ten giang vien: <input type="text" required name="tenGiangVien"> <br>
     Tuoi: <input type="number" required name="tuoi"> <br>
@@ -60,5 +66,18 @@
     </c:forEach>
     </tbody>
 </table>
+<a href="/giang-vien/phan-trang?page=0">First</a>
+<a href="/giang-vien/phan-trang?page=${page == 0 ? totalPages - 1 : page - 1}">Prev</a>
+<a href="/giang-vien/phan-trang?page=${page == totalPages - 1 ? 0 : page + 1}">Next</a>
+<a href="/giang-vien/phan-trang?page=${totalPages - 1}">Last</a>
+<br>
+<c:forEach begin="0" end="${totalPages - 1}" varStatus="i">
+    <a href="/giang-vien/phan-trang?page=${i.index}"
+       style="${page == i.index ? 'color:red' : ''}">
+            ${i.index + 1}
+    </a>
+</c:forEach>
+<%--<a href="/giang-vien/phan-trang?page=${page-1}">Prev</a>--%>
+<%--<a href="/giang-vien/phan-trang?page=${page+1}">Next</a>--%>
 </body>
 </html>
